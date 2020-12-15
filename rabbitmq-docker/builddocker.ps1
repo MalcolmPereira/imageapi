@@ -1,0 +1,1 @@
+docker build -t malcolmpereira/imageapi-rabbitmq .

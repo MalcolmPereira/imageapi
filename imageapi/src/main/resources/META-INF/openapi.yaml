@@ -1,0 +1,219 @@
+openapi: 3.0.3
+
+info:
+  title: Image API
+  description: Open API documentation for Image API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/imageapi
+  - url: http://localhost:38080/imageapi
+
+tags:
+  - name: ImageAPI
+    description: Image API Service API Endpoint
+
+paths:
+  /validate:
+    post :
+      description: Image Validation
+      tags:
+        - ImageAPI
+      requestBody:
+        description: Image Validation Data
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Successful Image Validate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageMetadata'
+        400:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        415:
+          description: Invalid Request, Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        500:
+           description: Internal Server Error
+           content:
+             application/json:
+                schema:
+                  $ref: '#/components/schemas/StatusResponse'
+  /generate:
+    post :
+      description: Image Sampling
+      tags:
+        - ImageAPI
+      requestBody:
+        description: Image Sampling Data
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                scaletype:
+                  type: string
+                  description: Valid Image Scaling Type Supported (BICUBIC, BILINEAR,NEAREST_NEIGHBOR), Default BICUBIC
+                scale:
+                  type: string
+                  description: Image Scaling factor value greater than 0, example 1, 2, 0.5, 0.3. Use scale or Width and Height
+                width:
+                  type: string
+                  description: Image Scaling Width greater than 0
+                height:
+                  type: string
+                  description: Image Scaling Height greater than 0
+      responses:
+        200:
+          description: Successful Image Sampling
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+        400:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        415:
+          description: Invalid Request, Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+  /images:
+    get :
+      description: Get list of stored images
+      tags:
+        - ImageAPI
+      responses:
+        200:
+          description: Get Images
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Images'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+  /images/{imageid}:
+    get:
+      description: Get Image by ID
+      tags:
+        - ImageAPI
+      parameters:
+        - name: imageid
+          in: path
+          description: Image Id
+          required: true
+          schema:
+            type: String
+      responses:
+        200:
+          description: Get Image
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        400:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        404:
+          description: Image Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+components:
+  schemas:
+    StatusResponse:
+      description: API response status
+      properties:
+        statusCode:
+          type: integer
+          description: Status of the response and applicable error code
+        error:
+          type: string
+          description: Error Type
+        message:
+          type: string
+          description: Error message for response
+    ImageMetadata:
+      description: Image Metadata
+      properties:
+        mimetype:
+          type: string
+          description: image mime type
+        size:
+          type: integer
+          description: image size
+        width:
+          type: integer
+          description: image width
+        height:
+          type: integer
+          description: image height
+    Images:
+      description: Images
+      properties:
+        type: array
+        items:
+          $ref: '#/components/schemas/Image'
+    Image:
+      description: Image
+      properties:
+        imageid:
+          type: string
+          description: Image Id
+        date:
+          type: string
+          description: Date Image was Saved
+        image:
+          type: string
+          description: Image Thumbnail Base 64 String

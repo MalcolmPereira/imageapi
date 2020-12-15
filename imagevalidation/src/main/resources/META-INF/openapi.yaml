@@ -1,0 +1,87 @@
+openapi: 3.0.3
+
+info:
+  title: Image Validation  API
+  description: Open API documentation for imagevalidation
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8810/imagevalidation
+  - url: http://localhost:38810/imagevalidation
+
+tags:
+  - name: ImageValidation
+    description: Image Validation Service API Endpoint
+
+paths:
+  /validate:
+    post :
+      description: Image Validation
+      tags:
+        - ImageValidation
+      requestBody:
+        description: Image Validation Data
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Successful Image Validate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageMetadata'
+        400:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        415:
+          description: Invalid Request, Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+components:
+  schemas:
+    StatusResponse:
+      description: API response status
+      properties:
+        statusCode:
+          type: integer
+          description: Status of the response and applicable error code
+        error:
+          type: string
+          description: Error Type
+        message:
+          type: string
+          description: Error message for response
+    ImageMetadata:
+      description: Image Metadata
+      properties:
+        mimetype:
+          type: string
+          description: image mime type
+        size:
+          type: integer
+          description: image size
+        width:
+          type: integer
+          description: image width
+        height:
+          type: integer
+          description: image height

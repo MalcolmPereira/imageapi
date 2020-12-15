@@ -1,0 +1,181 @@
+# Docker compose file for Image API Microservices Using Quarkus
+
+# Notes
+# Tweak resources cpu/memory as per machine contraints
+# Especially ELK Stack
+# Confirm environment variable are valid and the images are availale
+
+version: "3.8"
+services:
+  elasticsearch:
+    image: elasticsearch:7.9.2
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: "1.5G"
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  logstash:
+    image: logstash:7.9.2
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: "512M"
+    environment:
+      - config.string= '
+        input {
+        gelf {
+        port => 12201
+        }
+        }
+        output {
+        stdout {}
+        elasticsearch {
+        hosts => ["http://elasticsearch:9200"]
+        }
+        }'
+    ports:
+      - "12201:12201/udp"
+      - "5000:5000"
+      - "9600:9600"
+  kibana:
+    image: kibana:7.9.2
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: "512M"
+    ports:
+      - "5601:5601"
+  rabbitmq:
+    image: malcolmpereira/imageapi-rabbitmq
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: "256M"
+    environment:
+      - RABBITMQ_DEFAULT_USER=imageapi
+      - RABBITMQ_DEFAULT_PASS=secret
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  postgresql:
+    image: malcolmpereira/imageapi-postgres
+    deploy:
+      resources:
+        limits:
+          cpus: 0.25
+          memory: "64M"
+    environment:
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - "5432:5432"
+  jaeger:
+    image: jaegertracing/all-in-one:1.18
+    deploy:
+      resources:
+        limits:
+          cpus: 0.25
+          memory: "15M"
+    environment:
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+    ports:
+      - "5775:5775/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14268:14268"
+      - "14250:14250"
+      - "9411:9411"
+  imagevalidation:
+    image: malcolmpereira/imagevalidation-quarkus-jvm
+    deploy:
+      resources:
+        limits:
+          cpus: 0.25
+          memory: "128M"
+    environment:
+      - JAEGAR_HOST=http://jaeger:14268/api/traces
+      - LOGSTASH_HOST=logstash
+    ports:
+      - "8810:8810"
+    depends_on:
+      - jaeger
+  imagethumbnail:
+    image: malcolmpereira/imagethumbnail-quarkus-jvm
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: "512M"
+        reservations:
+          memory: "512M"
+    environment:
+      - IMAGE_RABBITMQ_HOST=rabbitmq
+      - IMAGE_RABBITMQ_USERNAME=imageapi
+      - IMAGE_RABBITMQ_PASSWORD=secret
+      - JAEGAR_HOST=http://jaeger:14268/api/traces
+      - LOGSTASH_HOST=logstash
+    ports:
+      - "8820:8820"
+    depends_on:
+      - rabbitmq
+      - jaeger
+  imagestorage:
+    image: malcolmpereira/imagestorage-quarkus-native
+    deploy:
+      resources:
+        limits:
+          cpus: 0.25
+          memory: "8M"
+    environment:
+      - IMAGE_RABBITMQ_HOST=rabbitmq
+      - IMAGE_RABBITMQ_USERNAME=imageapi
+      - IMAGE_RABBITMQ_PASSWORD=secret
+      - IMAGEAPI_DB_HOST=postgresql
+      - JAEGAR_HOST=http://jaeger:14268/api/traces
+      - LOGSTASH_HOST=logstash
+    ports:
+      - "8830:8830"
+    depends_on:
+      - postgresql
+      - imagethumbnail
+      - jaeger
+  imageapi:
+    image: malcolmpereira/imageapi-quarkus-native
+    deploy:
+      resources:
+        limits:
+          cpus: 0.25
+          memory: "8M"
+    environment:
+      - IMAGEVALIDATION_SERVICE=http://imagevalidation:8810/imagevalidation
+      - IMAGETHUMBNAIL_SERVICE=http://imagethumbnail:8820/imagesampling
+      - IMAGESTORAGE_SERVICE=http://imagestorage:8830/imagestorage
+      - IMAGE_API_ORIGINS=http://localhost:3000
+      - JAEGAR_HOST=http://jaeger:14268/api/traces
+      - LOGSTASH_HOST=logstash
+    ports:
+      - "8080:8080"
+    depends_on:
+      - jaeger
+      - imagevalidation
+      - imagethumbnail
+      - imagestorage
+  imageclient:
+    image: malcolmpereira/imageclient
+    deploy:
+      resources:
+        limits:
+          cpus: 0.15
+          memory: "8M"
+    ports:
+      - "3000:80"
+    depends_on:
+      - imageapi

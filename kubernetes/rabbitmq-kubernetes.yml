@@ -1,0 +1,66 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.name: rabbitmq
+  name: rabbitmq
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.name: rabbitmq
+  name: rabbitmq
+spec:
+  ports:
+    - port: 15672
+      targetPort: 15672
+      protocol: TCP
+      name: tcp-15672
+    - port: 5672
+      targetPort: 5672
+      protocol: TCP
+      name: tcp-5672
+  selector:
+    app.name: rabbitmq
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.name: rabbitmq
+  name: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.name: rabbitmq
+  template:
+    metadata:
+      labels:
+        app.name: rabbitmq
+    spec:
+      serviceAccount: rabbitmq
+      containers:
+        - name: rabbitmq
+          image: malcolmpereira/imageapi-rabbitmq
+          imagePullPolicy: Never
+          resources:
+            limits:
+              cpu: "0.25"
+              memory: "512Mi"
+            requests:
+              cpu: "0.25"
+              memory: "512Mi"
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: imageapi
+            - name: RABBITMQ_DEFAULT_PASS
+              value: secret
+          ports:
+            - containerPort: 15672
+              protocol: TCP
+            - containerPort: 5672
+              protocol: TCP

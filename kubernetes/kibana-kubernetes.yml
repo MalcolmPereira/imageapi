@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.name: kibana
+  name: kibana
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.name: kibana
+  name: kibana
+spec:
+  ports:
+    - port: 5601
+      targetPort: 5601
+      protocol: TCP
+      name: tcp-5601
+      nodePort: 31003
+  selector:
+    app.name: kibana
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.name: kibana
+  name: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.name: kibana
+  template:
+    metadata:
+      labels:
+        app.name: kibana
+    spec:
+      serviceAccount: kibana
+      containers:
+        - name: kibana
+          image: kibana:7.9.2
+          imagePullPolicy: Never
+          # resources:
+          #   limits:
+          #     cpu: "1.0"
+          #     memory: "512Mi"
+          #   requests:
+          #     cpu: "1.0"
+          #     memory: "512Mi"
+          env:
+            - name: POSTGRES_PASSWORD
+              value: secret
+          ports:
+            - containerPort: 5601
+              protocol: TCP

@@ -1,0 +1,653 @@
+[
+{
+  "name":"com.arjuna.ats.arjuna.common.CoordinatorEnvironmentBean",
+  "allDeclaredFields":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"getCheckedActionFactory","parameterTypes":[] }, 
+    {"name":"getCheckedActionFactoryClassName","parameterTypes":[] }, 
+    {"name":"getCommunicationStore","parameterTypes":[] }, 
+    {"name":"getDefaultTimeout","parameterTypes":[] }, 
+    {"name":"getDynamic1PC","parameterTypes":[] }, 
+    {"name":"getMaxTwoPhaseCommitThreads","parameterTypes":[] }, 
+    {"name":"getTxReaperCancelFailWaitPeriod","parameterTypes":[] }, 
+    {"name":"getTxReaperCancelWaitPeriod","parameterTypes":[] }, 
+    {"name":"getTxReaperMode","parameterTypes":[] }, 
+    {"name":"getTxReaperTimeout","parameterTypes":[] }, 
+    {"name":"getTxReaperZombieMax","parameterTypes":[] }, 
+    {"name":"isAllowCheckedActionFactoryOverride","parameterTypes":[] }, 
+    {"name":"isAlternativeRecordOrdering","parameterTypes":[] }, 
+    {"name":"isAsyncAfterSynchronization","parameterTypes":[] }, 
+    {"name":"isAsyncBeforeSynchronization","parameterTypes":[] }, 
+    {"name":"isAsyncCommit","parameterTypes":[] }, 
+    {"name":"isAsyncPrepare","parameterTypes":[] }, 
+    {"name":"isAsyncRollback","parameterTypes":[] }, 
+    {"name":"isBeforeCompletionWhenRollbackOnly","parameterTypes":[] }, 
+    {"name":"isClassicPrepare","parameterTypes":[] }, 
+    {"name":"isCommitOnePhase","parameterTypes":[] }, 
+    {"name":"isEnableStatistics","parameterTypes":[] }, 
+    {"name":"isFinalizeBasicActions","parameterTypes":[] }, 
+    {"name":"isMaintainHeuristics","parameterTypes":[] }, 
+    {"name":"isReadonlyOptimisation","parameterTypes":[] }, 
+    {"name":"isSharedTransactionLog","parameterTypes":[] }, 
+    {"name":"isStartDisabled","parameterTypes":[] }, 
+    {"name":"isTransactionStatusManagerEnable","parameterTypes":[] }, 
+    {"name":"isWriteOptimisation","parameterTypes":[] }, 
+    {"name":"setAllowCheckedActionFactoryOverride","parameterTypes":["boolean"] }, 
+    {"name":"setAlternativeRecordOrdering","parameterTypes":["boolean"] }, 
+    {"name":"setAsyncAfterSynchronization","parameterTypes":["boolean"] }, 
+    {"name":"setAsyncBeforeSynchronization","parameterTypes":["boolean"] }, 
+    {"name":"setAsyncCommit","parameterTypes":["boolean"] }, 
+    {"name":"setAsyncPrepare","parameterTypes":["boolean"] }, 
+    {"name":"setAsyncRollback","parameterTypes":["boolean"] }, 
+    {"name":"setBeforeCompletionWhenRollbackOnly","parameterTypes":["boolean"] }, 
+    {"name":"setCheckedActionFactory","parameterTypes":["com.arjuna.ats.arjuna.coordinator.CheckedActionFactory"] }, 
+    {"name":"setCheckedActionFactoryClassName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setClassicPrepare","parameterTypes":["boolean"] }, 
+    {"name":"setCommitOnePhase","parameterTypes":["boolean"] }, 
+    {"name":"setCommunicationStore","parameterTypes":["java.lang.String"] }, 
+    {"name":"setDefaultTimeout","parameterTypes":["int"] }, 
+    {"name":"setDynamic1PC","parameterTypes":["boolean"] }, 
+    {"name":"setEnableStatistics","parameterTypes":["boolean"] }, 
+    {"name":"setFinalizeBasicActions","parameterTypes":["boolean"] }, 
+    {"name":"setMaintainHeuristics","parameterTypes":["boolean"] }, 
+    {"name":"setMaxTwoPhaseCommitThreads","parameterTypes":["int"] }, 
+    {"name":"setReadonlyOptimisation","parameterTypes":["boolean"] }, 
+    {"name":"setSharedTransactionLog","parameterTypes":["boolean"] }, 
+    {"name":"setStartDisabled","parameterTypes":["boolean"] }, 
+    {"name":"setTransactionStatusManagerEnable","parameterTypes":["boolean"] }, 
+    {"name":"setTxReaperCancelFailWaitPeriod","parameterTypes":["long"] }, 
+    {"name":"setTxReaperCancelWaitPeriod","parameterTypes":["long"] }, 
+    {"name":"setTxReaperMode","parameterTypes":["java.lang.String"] }, 
+    {"name":"setTxReaperTimeout","parameterTypes":["long"] }, 
+    {"name":"setTxReaperZombieMax","parameterTypes":["int"] }, 
+    {"name":"setWriteOptimisation","parameterTypes":["boolean"] }
+  ]
+},
+{
+  "name":"com.arjuna.ats.arjuna.common.CoreEnvironmentBean",
+  "allDeclaredFields":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"getNodeIdentifier","parameterTypes":[] }, 
+    {"name":"getPid","parameterTypes":[] }, 
+    {"name":"getProcessImplementation","parameterTypes":[] }, 
+    {"name":"getProcessImplementationClassName","parameterTypes":[] }, 
+    {"name":"getSocketProcessIdMaxPorts","parameterTypes":[] }, 
+    {"name":"getSocketProcessIdPort","parameterTypes":[] }, 
+    {"name":"getTimeoutFactor","parameterTypes":[] }, 
+    {"name":"getVarDir","parameterTypes":[] }, 
+    {"name":"isAllowMultipleLastResources","parameterTypes":[] }, 
+    {"name":"isDisableMultipleLastResourcesWarning","parameterTypes":[] }, 
+    {"name":"setAllowMultipleLastResources","parameterTypes":["boolean"] }, 
+    {"name":"setDisableMultipleLastResourcesWarning","parameterTypes":["boolean"] }, 
+    {"name":"setNodeIdentifier","parameterTypes":["java.lang.String"] }, 
+    {"name":"setPid","parameterTypes":["int"] }, 
+    {"name":"setProcessImplementation","parameterTypes":["com.arjuna.ats.arjuna.utils.Process"] }, 
+    {"name":"setProcessImplementationClassName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setSocketProcessIdMaxPorts","parameterTypes":["int"] }, 
+    {"name":"setSocketProcessIdPort","parameterTypes":["int"] }, 
+    {"name":"setTimeoutFactor","parameterTypes":["int"] }, 
+    {"name":"setVarDir","parameterTypes":["java.lang.String"] }
+  ]
+},
+{
+  "name":"com.arjuna.common.util.propertyservice.PropertiesFactory",
+  "fields":[{"name":"delegatePropertiesFactory"}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.BLCHeader$DrainStatusRef",
+  "fields":[{"name":"drainStatus", "allowUnsafeAccess":true}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueColdProducerFields",
+  "fields":[{"name":"producerLimit", "allowUnsafeAccess":true}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueConsumerFields",
+  "fields":[{"name":"consumerIndex", "allowUnsafeAccess":true}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueProducerFields",
+  "fields":[{"name":"producerIndex", "allowUnsafeAccess":true}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.PS",
+  "fields":[
+    {"name":"key", "allowUnsafeAccess":true}, 
+    {"name":"value", "allowUnsafeAccess":true}
+  ]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.PSW",
+  "fields":[{"name":"writeTime", "allowUnsafeAccess":true}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.PSWMS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.SSMSA",
+  "methods":[{"name":"<init>","parameterTypes":["com.github.benmanes.caffeine.cache.Caffeine","com.github.benmanes.caffeine.cache.CacheLoader","boolean"] }]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.StripedBuffer",
+  "fields":[{"name":"tableBusy", "allowUnsafeAccess":true}]
+},
+{
+  "name":"com.malcolm.imagestorage.ImageStorage",
+  "methods":[{"name":"saveImage","parameterTypes":["com.malcolm.imagestorage.orm.Image"] }]
+},
+{
+  "name":"com.malcolm.imagestorage.orm.Image",
+  "allDeclaredMethods":true,
+  "fields":[
+    {"name":"dateadded"}, 
+    {"name":"imagehashid"}, 
+    {"name":"imageid"}, 
+    {"name":"img"}, 
+    {"name":"imgthumbnail"}
+  ],
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"getImageid","parameterTypes":[] }, 
+    {"name":"setImageid","parameterTypes":["long"] }
+  ]
+},
+{
+  "name":"io.agroal.pool.ConnectionHandler[]"
+},
+{
+  "name":"io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor",
+  "methods":[
+    {"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, 
+    {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }
+  ]
+},
+{
+  "name":"io.netty.buffer.AbstractByteBufAllocator",
+  "allDeclaredMethods":true
+},
+{
+  "name":"io.netty.channel.ChannelInboundHandlerAdapter",
+  "methods":[
+    {"name":"channelActive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, 
+    {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelUnregistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelWritabilityChanged","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"userEventTriggered","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }
+  ]
+},
+{
+  "name":"io.netty.channel.ChannelInitializer",
+  "methods":[
+    {"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }
+  ]
+},
+{
+  "name":"io.netty.channel.DefaultChannelPipeline$HeadContext",
+  "methods":[
+    {"name":"bind","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.net.SocketAddress","io.netty.channel.ChannelPromise"] }, 
+    {"name":"channelActive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, 
+    {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelUnregistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelWritabilityChanged","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"close","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, 
+    {"name":"connect","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.net.SocketAddress","java.net.SocketAddress","io.netty.channel.ChannelPromise"] }, 
+    {"name":"deregister","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, 
+    {"name":"disconnect","parameterTypes":["io.netty.channel.ChannelHandlerContext","io.netty.channel.ChannelPromise"] }, 
+    {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }, 
+    {"name":"flush","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"read","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"userEventTriggered","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, 
+    {"name":"write","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object","io.netty.channel.ChannelPromise"] }
+  ]
+},
+{
+  "name":"io.netty.channel.DefaultChannelPipeline$TailContext",
+  "methods":[
+    {"name":"channelActive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }, 
+    {"name":"channelReadComplete","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelUnregistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelWritabilityChanged","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }, 
+    {"name":"userEventTriggered","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }
+  ]
+},
+{
+  "name":"io.netty.channel.SimpleChannelInboundHandler",
+  "methods":[{"name":"channelRead","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Object"] }]
+},
+{
+  "name":"io.netty.channel.socket.nio.NioSocketChannel",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueColdProducerFields",
+  "fields":[{"name":"producerLimit", "allowUnsafeAccess":true}]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueConsumerFields",
+  "fields":[{"name":"consumerIndex", "allowUnsafeAccess":true}]
+},
+{
+  "name":"io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueueProducerFields",
+  "fields":[{"name":"producerIndex", "allowUnsafeAccess":true}]
+},
+{
+  "name":"io.quarkus.agroal.runtime.JdbcDriver",
+  "allDeclaredMethods":true
+},
+{
+  "name":"io.quarkus.hibernate.orm.runtime.customized.QuarkusConnectionProvider",
+  "allPublicMethods":true
+},
+{
+  "name":"io.quarkus.hibernate.orm.runtime.customized.QuarkusJtaPlatform",
+  "allPublicMethods":true
+},
+{
+  "name":"io.quarkus.hibernate.orm.runtime.customized.QuarkusRuntimeProxyFactoryFactory",
+  "allPublicMethods":true
+},
+{
+  "name":"io.quarkus.hibernate.orm.runtime.service.CfgXmlAccessServiceInitiatorQuarkus$1",
+  "allPublicMethods":true
+},
+{
+  "name":"io.quarkus.runner.ApplicationImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"java.beans.PropertyVetoException"
+},
+{
+  "name":"java.lang.Object",
+  "allPublicMethods":true
+},
+{
+  "name":"java.lang.Thread",
+  "fields":[
+    {"name":"contextClassLoader", "allowUnsafeAccess":true}, 
+    {"name":"inheritableThreadLocals", "allowUnsafeAccess":true}, 
+    {"name":"threadLocalRandomProbe", "allowUnsafeAccess":true}, 
+    {"name":"threadLocals", "allowUnsafeAccess":true}
+  ]
+},
+{
+  "name":"java.lang.management.ManagementFactory",
+  "methods":[{"name":"getRuntimeMXBean","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.management.RuntimeMXBean",
+  "methods":[
+    {"name":"getInputArguments","parameterTypes":[] }, 
+    {"name":"getName","parameterTypes":[] }
+  ]
+},
+{
+  "name":"java.nio.Bits",
+  "fields":[{"name":"UNALIGNED"}]
+},
+{
+  "name":"java.nio.Buffer",
+  "fields":[{"name":"address", "allowUnsafeAccess":true}]
+},
+{
+  "name":"java.nio.DirectByteBuffer",
+  "methods":[{"name":"<init>","parameterTypes":["long","int"] }]
+},
+{
+  "name":"javax.enterprise.context.BeforeDestroyed",
+  "allDeclaredMethods":true
+},
+{
+  "name":"javax.enterprise.context.Destroyed",
+  "allDeclaredMethods":true
+},
+{
+  "name":"javax.enterprise.inject.Default",
+  "allDeclaredMethods":true
+},
+{
+  "name":"javax.enterprise.inject.spi.BeanManager"
+},
+{
+  "name":"javax.net.ssl.SSLEngine",
+  "methods":[{"name":"getApplicationProtocol","parameterTypes":[] }]
+},
+{
+  "name":"javax.transaction.Transactional",
+  "allDeclaredMethods":true
+},
+{
+  "name":"javax.validation.ConstraintViolation"
+},
+{
+  "name":"jdk.internal.misc.Unsafe",
+  "methods":[{"name":"getUnsafe","parameterTypes":[] }]
+},
+{
+  "name":"org.apache.qpid.jms.JmsConnectionFactory",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.jndi.JNDIStorable",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.message.JmsMessageIDBuilder",
+  "methods":[
+    {"name":"createMessageID","parameterTypes":["java.lang.String","long"] }, 
+    {"name":"initialize","parameterTypes":["java.lang.String"] }
+  ]
+},
+{
+  "name":"org.apache.qpid.jms.message.JmsMessageIDBuilder$BUILTIN$1$1",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.meta.JmsAbstractResource",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.meta.JmsConnectionInfo",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.policy.JmsDefaultDeserializationPolicy",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.policy.JmsDefaultMessageIDPolicy",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.policy.JmsDefaultPrefetchPolicy",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.policy.JmsDefaultPresettlePolicy",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.policy.JmsDefaultRedeliveryPolicy",
+  "allPublicMethods":true
+},
+{
+  "name":"org.apache.qpid.jms.provider.amqp.AmqpProviderFactory",
+  "allPublicMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.apache.qpid.jms.transports.netty.NettyTcpTransport$NettyDefaultHandler",
+  "methods":[
+    {"name":"channelActive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelInactive","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"channelRegistered","parameterTypes":["io.netty.channel.ChannelHandlerContext"] }, 
+    {"name":"exceptionCaught","parameterTypes":["io.netty.channel.ChannelHandlerContext","java.lang.Throwable"] }
+  ]
+},
+{
+  "name":"org.apache.qpid.jms.transports.netty.NettyTcpTransportFactory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.eclipse.microprofile.health.Readiness",
+  "allDeclaredMethods":true
+},
+{
+  "name":"org.eclipse.microprofile.metrics.annotation.Counted",
+  "allDeclaredMethods":true
+},
+{
+  "name":"org.eclipse.microprofile.metrics.annotation.Metered",
+  "allDeclaredMethods":true
+},
+{
+  "name":"org.eclipse.microprofile.metrics.annotation.Timed",
+  "allDeclaredMethods":true
+},
+{
+  "name":"org.hibernate.annotations.common.reflection.ReflectionManager",
+  "methods":[{"name":"reset","parameterTypes":[] }]
+},
+{
+  "name":"org.hibernate.annotations.common.reflection.java.JavaReflectionManager",
+  "methods":[{"name":"getXAnnotatedElement","parameterTypes":["java.lang.Package"] }]
+},
+{
+  "name":"org.hibernate.annotations.common.reflection.java.JavaXMember",
+  "methods":[{"name":"getMember","parameterTypes":[] }]
+},
+{
+  "name":"org.hibernate.bytecode.internal.none.BytecodeProviderImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.cache.internal.EnabledCaching",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.cfg.beanvalidation.TypeSafeActivator",
+  "methods":[{"name":"activate","parameterTypes":["org.hibernate.cfg.beanvalidation.ActivationContext"] }]
+},
+{
+  "name":"org.hibernate.engine.config.internal.ConfigurationServiceImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.engine.jdbc.internal.JdbcServicesImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.engine.jndi.internal.JndiServiceImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.engine.query.internal.NativeQueryInterpreterStandardImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.event.service.internal.EventListenerRegistryImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.event.spi.AutoFlushEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.DeleteEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.DirtyCheckEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.EventType",
+  "allDeclaredFields":true
+},
+{
+  "name":"org.hibernate.event.spi.EvictEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.FlushEntityEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.FlushEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.InitializeCollectionEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.LoadEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.LockEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.MergeEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.PersistEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.PostDeleteEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.PostInsertEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.PostLoadEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.PostUpdateEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.PreLoadEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.RefreshEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.ReplicateEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.ResolveNaturalIdEventListener[]"
+},
+{
+  "name":"org.hibernate.event.spi.SaveOrUpdateEventListener[]"
+},
+{
+  "name":"org.hibernate.internal.CoreMessageLogger_$logger",
+  "methods":[{"name":"<init>","parameterTypes":["org.jboss.logging.Logger"] }]
+},
+{
+  "name":"org.hibernate.internal.EntityManagerMessageLogger_$logger",
+  "methods":[{"name":"<init>","parameterTypes":["org.jboss.logging.Logger"] }]
+},
+{
+  "name":"org.hibernate.persister.entity.SingleTableEntityPersister",
+  "methods":[{"name":"<init>","parameterTypes":["org.hibernate.mapping.PersistentClass","org.hibernate.cache.spi.access.EntityDataAccess","org.hibernate.cache.spi.access.NaturalIdDataAccess","org.hibernate.persister.spi.PersisterCreationContext"] }]
+},
+{
+  "name":"org.hibernate.persister.internal.PersisterFactoryImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.persister.internal.StandardPersisterClassResolver",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.property.access.internal.PropertyAccessStrategyResolverStandardImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.resource.beans.internal.BeansMessageLogger_$logger",
+  "methods":[{"name":"<init>","parameterTypes":["org.jboss.logging.Logger"] }]
+},
+{
+  "name":"org.hibernate.resource.beans.internal.ManagedBeanRegistryImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.resource.transaction.backend.jta.internal.JtaTransactionCoordinatorBuilderImpl",
+  "allPublicMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.hibernate.service.internal.SessionFactoryServiceRegistryFactoryImpl",
+  "allPublicMethods":true
+},
+{
+  "name":"org.hibernate.tuple.entity.PojoEntityTuplizer",
+  "methods":[{"name":"<init>","parameterTypes":["org.hibernate.tuple.entity.EntityMetamodel","org.hibernate.mapping.PersistentClass"] }]
+},
+{
+  "name":"org.infinispan.quarkus.hibernate.cache.QuarkusInfinispanRegionFactory",
+  "allPublicMethods":true
+},
+{
+  "name":"org.jboss.resteasy.microprofile.config.FilterConfigSourceImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.jboss.resteasy.microprofile.config.ServletConfigSourceImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.jboss.resteasy.microprofile.config.ServletContextConfigSourceImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.jboss.threads.EnhancedQueueExecutor",
+  "fields":[
+    {"name":"activeCount", "allowUnsafeAccess":true}, 
+    {"name":"peakQueueSize", "allowUnsafeAccess":true}, 
+    {"name":"peakThreadCount", "allowUnsafeAccess":true}, 
+    {"name":"queueSize", "allowUnsafeAccess":true}, 
+    {"name":"sequence"}, 
+    {"name":"terminationWaiters", "allowUnsafeAccess":true}
+  ]
+},
+{
+  "name":"org.jboss.threads.EnhancedQueueExecutor$PoolThreadNode",
+  "fields":[
+    {"name":"parked", "allowUnsafeAccess":true}, 
+    {"name":"task", "allowUnsafeAccess":true}
+  ]
+},
+{
+  "name":"org.jboss.threads.EnhancedQueueExecutor$QNode",
+  "fields":[{"name":"next", "allowUnsafeAccess":true}]
+},
+{
+  "name":"org.jboss.threads.EnhancedQueueExecutorBase1",
+  "fields":[{"name":"tail", "allowUnsafeAccess":true}]
+},
+{
+  "name":"org.jboss.threads.EnhancedQueueExecutorBase3",
+  "fields":[{"name":"head", "allowUnsafeAccess":true}]
+},
+{
+  "name":"org.jboss.threads.EnhancedQueueExecutorBase5",
+  "fields":[{"name":"threadStatus", "allowUnsafeAccess":true}]
+},
+{
+  "name":"org.jboss.threads.Messages_$logger",
+  "methods":[{"name":"<init>","parameterTypes":["org.jboss.logging.Logger"] }]
+},
+{
+  "name":"org.postgresql.Driver",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.misc.Unsafe",
+  "fields":[{"name":"theUnsafe"}],
+  "methods":[
+    {"name":"copyMemory","parameterTypes":["java.lang.Object","long","java.lang.Object","long","long"] }, 
+    {"name":"getAndAddLong","parameterTypes":["java.lang.Object","long","long"] }, 
+    {"name":"getAndSetObject","parameterTypes":["java.lang.Object","long","java.lang.Object"] }, 
+    {"name":"invokeCleaner","parameterTypes":["java.nio.ByteBuffer"] }
+  ]
+},
+{
+  "name":"sun.nio.ch.SelectorImpl",
+  "fields":[
+    {"name":"publicSelectedKeys", "allowUnsafeAccess":true}, 
+    {"name":"selectedKeys", "allowUnsafeAccess":true}
+  ]
+}
+]

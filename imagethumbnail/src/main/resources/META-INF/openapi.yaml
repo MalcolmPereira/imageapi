@@ -1,0 +1,88 @@
+openapi: 3.0.3
+
+info:
+  title: Image Sampling API
+  description: Open API documentation for Image Sampling
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8820/imagesampling
+  - url: http://localhost:38820/imagesampling
+
+tags:
+  - name: ImageSampling
+    description: Image Sampling Service API Endpoint
+
+paths:
+  /generate:
+    post :
+      description: Image Sampling
+      tags:
+        - ImageSampling
+      requestBody:
+        description: Image Sampling Data
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                scaletype:
+                   type: string
+                   description: Valid Image Scaling Type Supported (BICUBIC, BILINEAR,NEAREST_NEIGHBOR), Default BICUBIC
+                scale:
+                    type: string
+                    description: Image Scaling factor value greater than 0, example 1, 2, 0.5, 0.3. Use scale or Width and Height
+                width:
+                  type: string
+                  description: Image Scaling Width greater than 0
+                height:
+                  type: string
+                  description: Image Scaling Height greater than 0
+      responses:
+        200:
+          description: Successful PNG Sampling
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+        400:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        415:
+          description: Invalid Request, Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        500:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+components:
+  schemas:
+    StatusResponse:
+      description: API response status
+      properties:
+        statusCode:
+          type: integer
+          description: Status of the response and applicable error code
+        error:
+          type: string
+          description: Error Type
+        message:
+          type: string
+          description: Error message for response

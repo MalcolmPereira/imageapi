@@ -1,0 +1,115 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "8810"
+    app.quarkus.io/commit-id: 7529b3a43abea7cbdc8ef70275f550c8469d223f
+    app.quarkus.io/build-timestamp: 2020-09-30 - 19:06:41 +0000
+    prometheus.io/scrape: "true"
+  labels:
+    app.kubernetes.io/name: imagevalidation
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  name: imagevalidation
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "8810"
+    app.quarkus.io/commit-id: 7529b3a43abea7cbdc8ef70275f550c8469d223f
+    app.quarkus.io/build-timestamp: 2020-09-30 - 19:06:41 +0000
+    prometheus.io/scrape: "true"
+  labels:
+    app.kubernetes.io/name: imagevalidation
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  name: imagevalidation
+spec:
+  ports:
+    - port: 8810
+      targetPort: 8810
+      protocol: TCP
+      name: tcp-8810
+  selector:
+    app.kubernetes.io/name: imagevalidation
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "8810"
+    app.quarkus.io/commit-id: 7529b3a43abea7cbdc8ef70275f550c8469d223f
+    app.quarkus.io/build-timestamp: 2020-09-30 - 19:06:41 +0000
+    prometheus.io/scrape: "true"
+  labels:
+    app.kubernetes.io/name: imagevalidation
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  name: imagevalidation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: imagevalidation
+      app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8810"
+        app.quarkus.io/commit-id: 7529b3a43abea7cbdc8ef70275f550c8469d223f
+        app.quarkus.io/build-timestamp: 2020-09-30 - 19:06:41 +0000
+        prometheus.io/scrape: "true"
+      labels:
+        app.kubernetes.io/name: imagevalidation
+        app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    spec:
+      serviceAccount: imagevalidation
+      containers:
+        - name: imagevalidation
+          image: malcolmpereira/imagevalidation-quarkus-jvm
+          imagePullPolicy: Never
+          resources:
+            limits:
+              cpu: "0.25"
+              memory: "512Mi"
+            requests:
+              cpu: "0.25"
+              memory: "512Mi"
+          env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: JAEGAR_HOST
+              value: http://jaeger:14268/api/traces
+            - name: LOGSTASH_HOST
+              value: logstash
+          ports:
+            - containerPort: 8810
+              name: http
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health/live
+              port: 8810
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health/ready
+              port: 8810
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10

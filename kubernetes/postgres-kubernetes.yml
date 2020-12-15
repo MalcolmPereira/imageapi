@@ -1,0 +1,58 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.name: postgresql
+  name: postgresql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.name: postgresql
+  name: postgresql
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+      name: tcp-5432
+  selector:
+    app.name: postgresql
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.name: postgresql
+  name: postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.name: postgresql
+  template:
+    metadata:
+      labels:
+        app.name: postgresql
+    spec:
+      serviceAccount: postgresql
+      containers:
+        - name: postgresql
+          image: malcolmpereira/imageapi-postgres
+          imagePullPolicy: Never
+          resources:
+            limits:
+              cpu: "0.25"
+              memory: "128Mi"
+            requests:
+              cpu: "0.25"
+              memory: "128Mi"
+          env:
+            - name: POSTGRES_PASSWORD
+              value: secret
+          ports:
+            - containerPort: 5432
+              protocol: TCP

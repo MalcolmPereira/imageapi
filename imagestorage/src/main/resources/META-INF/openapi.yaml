@@ -1,0 +1,104 @@
+openapi: 3.0.3
+
+info:
+  title: Image Storage API
+  description: Open API documentation for image storage
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8830/imagestorage
+  - url: http://localhost:38830/imagestorage
+
+tags:
+  - name: ImageStorage
+    description: Image Storage Service API Endpoint
+
+paths:
+  /images:
+    get :
+      description: Get list of stored images
+      tags:
+        - ImageStorage
+      responses:
+        200:
+          description: Get Images
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Images'
+        500:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+  /images/{imageid}:
+    get:
+      description: Get Image by ID
+      tags:
+        - ImageStorage
+      parameters:
+        - name: imageid
+          in: path
+          description: Image Id
+          required: true
+          schema:
+            type: String
+      responses:
+        200:
+          description: Get Image
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        400:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        404:
+          description: Image Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+components:
+  schemas:
+    StatusResponse:
+      description: API response status
+      properties:
+        statusCode:
+          type: integer
+          description: Status of the response and applicable error code
+        error:
+          type: string
+          description: Error Type
+        message:
+          type: string
+          description: Error message for response
+    Images:
+      description: Images
+      properties:
+        type: array
+        items:
+          $ref: '#/components/schemas/Image'
+    Image:
+      description: Image
+      properties:
+        imageid:
+          type: string
+          description: Image Id
+        date:
+          type: string
+          description: Date Image was Saved
+        image:
+          type: string
+          description: Image Thumbnail Base 64 String

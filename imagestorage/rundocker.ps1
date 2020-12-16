@@ -1,6 +1,6 @@
 #Runs a Docker Container for malcolmpereira/imagestorage-quarkus-jvm
 
-
+#Create User Defined Network
 docker network create --driver bridge imageapi-net
 
 #Native image

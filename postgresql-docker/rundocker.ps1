@@ -1,3 +1,7 @@
+
+#Run Stanadlone PostGreSQL ImageAPI Database
+
+#Create User Defined Network
 docker network create --driver bridge imageapi-net
 
 

@@ -1,5 +1,6 @@
 #Runs a Docker Container for malcolmpereira/imagevalidation-quarkus-jvm
 
+#Create User Defined Network
 docker network create --driver bridge imageapi-net
 
 #JVM image

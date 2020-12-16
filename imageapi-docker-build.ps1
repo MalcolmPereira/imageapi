@@ -1,70 +1,69 @@
-echo "Starting Docker Image Builds..."
+Write-Output "Starting Docker Image Builds..."
 
 #Build Image API
-cd imageapi
+Set-Location imageapi
 #JVM Image
-#mvnw package
+#.\mvnw package
 #docker build -f src/main/docker/Dockerfile.jvm.alpine -t malcolmpereira/imageapi-quarkus-jvm .
 #Native Image
-#mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker -Dquarkus.container-image.build=true -Dquarkus.native.native-image-xmx=3g
-mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker -Dquarkus.container-image.build=true
+.\mvnw package -Pnative '-Dquarkus.native.container-build=true' '-Dquarkus.native.container-runtime=docker' '-Dquarkus.container-image.build=true'
 docker build -f src/main/docker/Dockerfile.native -t malcolmpereira/imageapi-quarkus-native .
-cd ..
+Set-Location ..
 
 
 #Build Image Validation
-cd imagevalidation
+Set-Location imagevalidation
 #JVM Image
-mvnw package
+.\mvnw package
 docker build -f src/main/docker/Dockerfile.jvm.alpine -t malcolmpereira/imagevalidation-quarkus-jvm .
 #Native Image Not Possible At this time since GRAAL does not support java.awt Graphics/BufferedImage
-#mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker -Dquarkus.container-image.build=true -Dquarkus.native.native-image-xmx=3g
+#.\mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker -Dquarkus.container-image.build=true -Dquarkus.native.native-image-xmx=3g
 #docker build -f src/main/docker/Dockerfile.native -t malcolmpereira/imagevalidation-quarkus-native .
-cd ..
+Set-Location ..
 
 #Build Image Thumbnail
-cd imagethumbnail
+Set-Location imagethumbnail
 #JVM Image
-mvnw package
+.\mvnw package
 docker build -f src/main/docker/Dockerfile.jvm.alpine -t malcolmpereira/imagethumbnail-quarkus-jvm .
 #Native Image Not Possible At this time since GRAAL does not support java.awt Graphics/BufferedImage
-#mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker -Dquarkus.container-image.build=true -Dquarkus.native.native-image-xmx=3g
+#.\mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker -Dquarkus.container-image.build=true -Dquarkus.native.native-image-xmx=3g
 #docker build -f src/main/docker/Dockerfile.native -t malcolmpereira/imagethumbnail-quarkus-native .
-cd ..
+Set-Location ..
 
 #Build Image Storage
-cd imagestorage
+Set-Location imagestorage
 #JVM Image
-#mvnw package
+#.\mvnw package
 #docker build -f src/main/docker/Dockerfile.jvm.alpine -t malcolmpereira/imagestorage-quarkus-jvm .
 #Native Image
 #mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker -Dquarkus.container-image.build=true -Dquarkus.native.native-image-xmx=3g
-mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker -Dquarkus.container-image.build=true
+.\mvnw package -Pnative '-Dquarkus.native.container-build=true' '-Dquarkus.native.container-runtime=docker' '-Dquarkus.container-image.build=true'
 docker build -f src/main/docker/Dockerfile.native -t malcolmpereira/imagestorage-quarkus-native .
-cd ..
+Set-Location ..
 
 #Build Image Client
-cd imageclient
+Set-Location imageclient
 yarn install
 yarn build
 docker build -t malcolmpereira/imageclient .
-cd ..
+Set-Location ..
 
 #Build PostGreSQL Image
-cd postgresql-docker
+Set-Location postgresql-docker
 docker build -t malcolmpereira/imageapi-postgres .
-cd ..
+Set-Location ..
 
 #Build RabbitMQ with AMQP 1.0 Image
-cd rabbitmq-docker
+Set-Location rabbitmq-docker
 docker build -t malcolmpereira/imageapi-rabbitmq .
-cd ..
+Set-Location ..
 
-echo "Done Docker Image Builds: "
-echo "Image API malcolmpereira/imageapi-quarkus-jvm "
-echo "Image Validation Service malcolmpereira/imagevalidation-quarkus-jvm "
-echo "Image Thumbnail Service malcolmpereira/imagethumbnail-quarkus-jvm "
-echo "Image Storage Service imagestorage-quarkus-jvm "
-echo "Image React Client malcolmpereira/imageclient "
-echo "Image DataStore malcolmpereira/imageapi-postgres"
-echo "Image Queue malcolmpereira/imageapi-rabbitmq"
+Write-Output "Done Docker Image Builds: "
+Write-Output "Image API malcolmpereira/imageapi-quarkus-jvm "
+Write-Output "Image Validation Service malcolmpereira/imagevalidation-quarkus-jvm "
+Write-Output "Image Thumbnail Service malcolmpereira/imagethumbnail-quarkus-jvm "
+Write-Output "Image Storage Service imagestorage-quarkus-jvm "
+Write-Output "Image React Client malcolmpereira/imageclient "
+Write-Output "Image DataStore malcolmpereira/imageapi-postgres"
+Write-Output "Image Queue malcolmpereira/imageapi-rabbitmq"

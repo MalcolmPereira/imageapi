@@ -1,4 +1,6 @@
+#Run Stanalone imagethumbnail service
 
+#Create User Defined Network
 docker network create --driver bridge imageapi-net
 
 #JVM image

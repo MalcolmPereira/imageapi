@@ -1,43 +1,43 @@
-echo "Starting Standalone Docker Run"
+Write-Output "Starting Standalone Docker Run"
 
 #Run RabbitMQ with AMQP 1.0 Image
-cd rabbitmq-docker
+Set-Location rabbitmq-docker
 ./rundocker.ps1
-cd ..
+Set-Location ..
 
 #Run PostGreSQL Image
-cd postgresql-docker
+Set-Location postgresql-docker
 ./rundocker.ps1
-cd ..
+Set-Location ..
 
 #Run Jaegar Tracing
-cd jaegar-tracing
+Set-Location jaegar-tracing
 ./run-jaegar-docker.ps1
-cd ..
+Set-Location ..
 
 #Run Image Storage
-cd imagestorage
+Set-Location imagestorage
 ./rundocker.ps1
-cd ..
+Set-Location ..
 
 #Run Image Thumbnail
-cd imagethumbnail
+Set-Location imagethumbnail
 ./rundocker.ps1
-cd ..
+Set-Location ..
 
 #Run Image Validation
-cd imagevalidation
+Set-Location imagevalidation
 ./rundocker.ps1
-cd ..
+Set-Location ..
 
 #Run Image API
-cd imageapi
+Set-Location imageapi
 ./rundocker.ps1
-cd ..
+Set-Location ..
 
 #Run Image Client
-cd imageclient
+Set-Location imageclient
 ./rundocker.ps1
-cd ..
+Set-Location ..
 
-echo "Done Docker Standalone Run "
+Write-Output "Done Docker Standalone Run "

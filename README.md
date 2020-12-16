@@ -6,9 +6,11 @@ This article covers microservices implementation using Quarkus: Supersonic Subat
 
 We will list steps to incorporate Quarkus extensions for OpenAPI service definition, REST clients, Eclipse micro profile metrics, Distributed Tracing and Centralized Logging. We also look at creating Docker images for JVM and building native images using GRAAL. The article concludes with deploying services to  Docker Compose and Kubernetes.
 
+![Image API Microservices](ReadMe2.gif)
+
 
 ## Show me the code:
-#### Code Description - <TO DO Add GitHub Code Base Here>
+#### Code Description - https://github.com/MalcolmPereira/imageapi
 
 ## 1. Microservices Recap
 
@@ -433,7 +435,7 @@ public ImageMetadata validate(@MultipartForm ImageUpload imageUpload) throws Ima
 3. Generated metrics data can be accumulated by calling metrics endpoint -http://localhost:8080/metrics/application. This can be consumed by monitoring applications to create custom dashboards around the performance of the service.
 
 ## 8. Code
-Repository: <TODO - Add GitHub Code Repository Here>
+Repository: https://github.com/MalcolmPereira/imageapi
 
 _Pre-requisites: _
 Java 11 or later, Docker Desktop, Kubernetes (Docker Desktop already comes with Kubernetes) , Understanding of Maven, Docker, Kubernetes and machine having 8GB of memory to spare. Docker running ELK stack…hmmm…takes up lot of resources.
@@ -752,5 +754,7 @@ ImageAPI service metrics accessible via Kubernetes Nodeport 31001.
 Distributed Tracing Jaegar ui is accessible via Kubernetes Nodeport 31002.
 
 Centralized Logging Kibana dashboard is accessible via Kubernetes Nodeport 31003.
+
+![Image API Microservices](ReadMe.gif)
 
 

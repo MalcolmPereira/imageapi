@@ -755,4 +755,6 @@ Distributed Tracing Jaegar ui is accessible via Kubernetes Nodeport 31002.
 
 Centralized Logging Kibana dashboard is accessible via Kubernetes Nodeport 31003.
 
+![Image API Microservices](ReadMe.gif)
+
 

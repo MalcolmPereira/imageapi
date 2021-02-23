@@ -15,7 +15,7 @@ tags:
 
 paths:
   /validate:
-    post :
+    post:
       description: Image Validation
       tags:
         - ImageAPI
@@ -36,27 +36,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ImageMetadata'
+                $ref: "#/components/schemas/ImageMetadata"
         400:
           description: Invalid Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
         415:
           description: Invalid Request, Unsupported Media Type
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
         500:
-           description: Internal Server Error
-           content:
-             application/json:
-                schema:
-                  $ref: '#/components/schemas/StatusResponse'
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusResponse"
   /generate:
-    post :
+    post:
       description: Image Sampling
       tags:
         - ImageAPI
@@ -100,22 +100,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
         415:
           description: Invalid Request, Unsupported Media Type
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
         500:
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
 
   /images:
-    get :
+    get:
       description: Get list of stored images
       tags:
         - ImageAPI
@@ -125,13 +125,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Images'
+                $ref: "#/components/schemas/Images"
         500:
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
   /images/{imageid}:
     get:
       description: Get Image by ID
@@ -143,7 +143,7 @@ paths:
           description: Image Id
           required: true
           schema:
-            type: String
+            type: string
       responses:
         200:
           description: Get Image
@@ -157,19 +157,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
         404:
           description: Image Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
         500:
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: "#/components/schemas/StatusResponse"
 components:
   schemas:
     StatusResponse:
@@ -204,7 +204,7 @@ components:
       properties:
         type: array
         items:
-          $ref: '#/components/schemas/Image'
+          $ref: "#/components/schemas/Image"
     Image:
       description: Image
       properties:

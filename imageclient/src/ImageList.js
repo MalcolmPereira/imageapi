@@ -7,7 +7,7 @@ import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 
 //Get API URL from Process
-export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/imageapi/";
+export const API_URL = process.env.REACT_APP_API_URL || "https://localhost:8080/imageapi/";
 
 export default class ImageList extends React.Component {
     constructor(props, context) {
@@ -85,9 +85,9 @@ export default class ImageList extends React.Component {
                 <Table striped responsive bordered variant="dark" size="sm">
                     <thead>
                         <tr>
-                            <th class="text-center">Image ID</th>
-                            <th class="text-center">Date Added</th>
-                            <th class="text-center">Image</th>
+                            <th className="text-center">Image ID</th>
+                            <th className="text-center">Date Added</th>
+                            <th className="text-center">Image</th>
                         </tr>
                     </thead>
                     <tbody>
